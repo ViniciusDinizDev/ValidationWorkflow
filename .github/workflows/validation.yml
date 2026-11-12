@@ -1,0 +1,16 @@
+name: validação do projeto
+on:
+    push:
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+          - name: Fazendo o checkout do repositório
+            uses: actions/checkout@v4
+          - name: Exibindo o nome do repositório e o usuário
+            run: |
+                echo "Repositorio: ${{ github.repository }}"
+                echo "Usuario    : ${{ github.actor }}"
+          - name: Verificando README.md
+            run: if [[ $(ls README.md) != README.md ]]; then exit 1; fi
+            
